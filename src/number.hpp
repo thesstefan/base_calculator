@@ -26,6 +26,8 @@ class Number {
 
         Number<Base> operator+(const Number<Base> &other) const;
         Number<Base> operator-(const Number<Base> &other) const;
+
+        Number<Base> operator*(const Number<Base> &digit) const;
 };
 
 template <unsigned int Base>
@@ -126,6 +128,30 @@ Number<Base> Number<Base>::operator-(const Number<Base>& other) const {
 
     if (remainder) 
         throw std::runtime_error("Difference can't be negative");
+
+    return Number<Base>(result_value);
+}
+
+template <unsigned int Base>
+Number<Base> Number<Base>::operator*(const Number<Base>& digit) const {
+    if (digit.get_value().size() != 1) 
+        throw std::runtime_error("Multiplication can only be done by DIGIT");
+
+    std::string result_value = "";
+    unsigned int remainder = 0;
+    unsigned int multiplication_digit = digitToValue(digit.get_value()[0]);
+
+    for (int char_index = this->value_string.size() - 1; char_index >= 0; char_index--) {
+        unsigned int product = digitToValue(value_string[char_index]) * multiplication_digit
+                               + remainder;
+
+        remainder = product / Base;
+
+        result_value.insert(result_value.begin(), valueToDigit(product % Base));
+    }
+
+    if (remainder)
+        result_value.insert(result_value.begin(), valueToDigit(remainder));
 
     return Number<Base>(result_value);
 }

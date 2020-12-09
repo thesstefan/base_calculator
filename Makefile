@@ -1,8 +1,6 @@
 CPP = g++
 CPPFLAGS = -g
 
-MEMORY_FLAG = -DMEMORY_CHECK
-
 INCLUDE := src
 SOURCE := $(wildcard src/*.cpp)
 TEST_SOURCE := $(wildcard test/*.cpp)
