@@ -17,7 +17,10 @@ class Number {
         Number<Base>(const std::string& value_string);
 
         std::string get_value() const;
+
         static bool validate_value_string(const std::string& value_string);
+        static std::string zero_padded_string(const std::string& value_string, 
+                                              size_t target_length);
 
         bool operator==(const Number<Base>& other) const;
 
@@ -55,17 +58,24 @@ bool Number<Base>::operator==(const Number<Base>& other) const {
 }
 
 template <unsigned int Base>
+std::string Number<Base>::zero_padded_string(const std::string& value_string,
+                                                 size_t target_length) {
+    std::string padded_string = value_string;
+
+    while (padded_string.size() < target_length)
+        padded_string.insert(padded_string.begin(), '0');
+
+    return padded_string;
+}
+
+template <unsigned int Base>
 Number<Base> Number<Base>::operator+(const Number<Base>& other) const {
     const std::string base_characters = get_base_characters(Base);
 
-    std::string value = this->value_string;
-    std::string other_value = other.get_value();
-
-    while (value.size() < other_value.size())
-        value.insert(value.begin(), '0');
-
-    while (other_value.size() < value.size())
-        other_value.insert(other_value.begin(), '0');
+    const std::string value = 
+        zero_padded_string(this->value_string, other.get_value().size());
+    const std::string other_value = 
+        zero_padded_string(other.get_value(), this->value_string.size());
 
     std::string result_value = "";
     unsigned int remainder = 0;
@@ -77,10 +87,7 @@ Number<Base> Number<Base>::operator+(const Number<Base>& other) const {
         result_value.insert(result_value.begin(), 
                             valueToDigit(digit_sum_value % Base));
 
-        if (digit_sum_value >= Base)
-            remainder = 1;
-        else 
-            remainder = 0;
+        remainder = digit_sum_value >= Base ? 1 : 0;
     }
 
     if (remainder) 
@@ -91,16 +98,15 @@ Number<Base> Number<Base>::operator+(const Number<Base>& other) const {
 
 template <unsigned int Base>
 Number<Base> Number<Base>::operator-(const Number<Base>& other) const {
+    if (other.get_value().size() > this->value_string.size()) 
+        throw std::runtime_error("Difference can't be negative");
+
     const std::string base_characters = get_base_characters(Base);
 
-    std::string value = this->value_string;
-    std::string other_value = other.get_value();
-
-    while (value.size() < other_value.size())
-        value.insert(value.begin(), '0');
-
-    while (other_value.size() < value.size())
-        other_value.insert(other_value.begin(), '0');
+    const std::string value = 
+        zero_padded_string(this->value_string, other.get_value().size());
+    const std::string other_value = 
+        zero_padded_string(other.get_value(), this->value_string.size());
 
     std::string result_value = "";
     unsigned int remainder = 0;
@@ -109,17 +115,17 @@ Number<Base> Number<Base>::operator-(const Number<Base>& other) const {
                               digitToValue(other_value[char_index]) -
                               remainder;
 
-        if (digit_sum_value >= 0) {
+        if (digit_sum_value >= 0)
             result_value.insert(result_value.begin(), valueToDigit(digit_sum_value));
-
-            remainder = 0;
-        } else {
+        else
             result_value.insert(result_value.begin(),
                                 valueToDigit((base_characters.size() + digit_sum_value)));
 
-            remainder = 1;
-        }
+        remainder = digit_sum_value < 0 ? 1 : 0;
     }
+
+    if (remainder) 
+        throw std::runtime_error("Difference can't be negative");
 
     return Number<Base>(result_value);
 }
