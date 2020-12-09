@@ -9,7 +9,7 @@
 template <unsigned int Base>
 class Number {
     private:
-        const std::string value_string;
+        std::string value_string;
 
         static std::string get_removed_zero_padding(const std::string& value_string);
         static std::string get_zero_padded(const std::string& value_string, 
@@ -18,12 +18,17 @@ class Number {
         const unsigned int base = Base;
 
         Number<Base>(const std::string& value_string);
+        Number<Base>(const Number<Base>& other);
+        Number<Base>(Number<Base>&& other);
 
         std::string get_value() const;
 
         static bool validate_value_string(const std::string& value_string);
 
         bool operator==(const Number<Base>& other) const;
+
+        Number<Base>& operator=(const Number<Base> &other);
+        Number<Base>& operator=(Number<Base> &&other);
 
         Number<Base> operator+(const Number<Base> &other) const;
         Number<Base> operator-(const Number<Base> &other) const;
@@ -47,7 +52,7 @@ template <unsigned int Base>
 std::string Number<Base>::get_removed_zero_padding(const std::string& value_string) {
     std::string result = value_string;
 
-    while (result[0] == '0' && result.size() != 1)
+    while (result[0] == '0' && result.size() > 1)
         result.erase(result.begin());
 
     return result;
@@ -67,7 +72,6 @@ std::string Number<Base>::get_zero_padded(const std::string& value_string,
 template <unsigned int Base>
 Number<Base>::Number(const std::string& value_string) : 
     value_string(get_removed_zero_padding(value_string)) {
-
     static_assert(!(Base < 2 || Base > 16), "Base must be in the range 2-16");
 
     if (!validate_value_string(value_string))
@@ -75,8 +79,30 @@ Number<Base>::Number(const std::string& value_string) :
 }
 
 template <unsigned int Base>
+Number<Base>::Number(const Number<Base>& other) : 
+    value_string(other.value_string) {}
+
+template <unsigned int Base>
+Number<Base>::Number(Number<Base>&& other) : 
+    value_string(std::move(other.value_string)) {}
+
+template <unsigned int Base>
 std::string Number<Base>::get_value() const {
     return this->value_string;
+}
+
+template <unsigned int Base>
+Number<Base>& Number<Base>::operator=(const Number<Base> &other) {
+    this->value_string = other.value_string;
+
+    return *this;
+}
+
+template <unsigned int Base>
+Number<Base>& Number<Base>::operator=(Number<Base> &&other) {
+    this->value_string = std::move(other.value_string);
+
+    return *this;
 }
 
 template <unsigned int Base>
