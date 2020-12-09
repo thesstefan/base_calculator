@@ -74,4 +74,38 @@ class Number {
 
             return Number<Base>(result_value);
         }
+
+        Number<Base> operator-(const Number<Base> &other) const {
+            const std::string base_characters = get_base_characters(Base);
+
+            std::string value = this->value_string;
+            std::string other_value = other.get_value();
+
+            while (value.size() < other_value.size())
+                value.insert(value.begin(), '0');
+
+            while (other_value.size() < value.size())
+                other_value.insert(other_value.begin(), '0');
+
+            std::string result_value = "";
+            unsigned int remainder = 0;
+            for (int char_index = value.size() - 1; char_index >= 0; char_index--) {
+                int digit_sum_value = digitToValue(value[char_index]) -
+                                      digitToValue(other_value[char_index]) -
+                                      remainder;
+
+                if (digit_sum_value >= 0) {
+                    result_value.insert(result_value.begin(), valueToDigit(digit_sum_value));
+
+                    remainder = 0;
+                } else {
+                    result_value.insert(result_value.begin(),
+                                        valueToDigit((base_characters.size() + digit_sum_value)));
+
+                    remainder = 1;
+                }
+            }
+
+            return Number<Base>(result_value);
+        }
 };
