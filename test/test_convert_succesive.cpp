@@ -1,6 +1,6 @@
 #include <catch2/catch.hpp>
 
-#include "../src/convert.hpp"
+#include "../src/convert_succesive.hpp"
 
 TEST_CASE("Conversion using succesive division", "[convert_succesive]") {
     SECTION( "Conversion from base 8" ) {

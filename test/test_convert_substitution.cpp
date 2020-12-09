@@ -1,6 +1,6 @@
 #include <catch2/catch.hpp>
 
-#include "../src/convert.hpp"
+#include "../src/convert_substitution.hpp"
 
 TEST_CASE("Conversion using the substitution method", "[convert_substitution]") {
     SECTION( "Conversion from base 2" ) {
