@@ -2,7 +2,7 @@
 
 #include "../src/number.hpp"
 
-TEST_CASE("Addition between two numbers", "[Number::operator+]") {
+TEST_CASE("Subtraction between two numbers", "[Number::operator+]") {
     SECTION( "Base 2" ) {
         Number<2> first = Number<2>("1010101010010100101");
         Number<2> second = Number<2>("101111111111111");
