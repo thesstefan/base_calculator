@@ -1,6 +1,6 @@
 #include <catch2/catch.hpp>
 
-#include "../src/fast_convert.hpp"
+#include "../src/convert_fast.hpp"
 
 TEST_CASE("Fast conversion using the powers of two", "[convert_fast]") {
     SECTION( "Conversion from base 2" ) {

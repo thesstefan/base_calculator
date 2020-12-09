@@ -1,12 +1,9 @@
 #include <iostream>
 
 #include "number.hpp"
-#include "fast_convert.hpp"
+#include "convert_fast.hpp"
 
 int main() {
-    Number<4> number("12312312312321321321");
-
-    auto nr = convert_fast<4, 2>(number);
-
-    std::cout << nr.get_value();
+    std::cout << (Number<2>("1010101010010100101") + 
+                  Number<2>("101111111111111")).get_value() << std::endl;
 }

@@ -1,4 +1,4 @@
-#include "misc.hpp"
+#include "tools.hpp"
 
 const std::string HEX_BASE_CHARACTERS("0123456789ABCDEF");
 

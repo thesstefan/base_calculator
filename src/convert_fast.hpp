@@ -5,7 +5,7 @@
 #include <algorithm>
 
 #include "number.hpp"
-#include "misc.hpp"
+#include "tools.hpp"
 
 template <size_t SrcBase>
 Number<2> convert_to_base2(const Number<SrcBase>& number_to_convert) {
