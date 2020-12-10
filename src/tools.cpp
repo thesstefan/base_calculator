@@ -12,6 +12,10 @@ const std::vector<std::string> RAPID_CONVERSION_STRINGS {
     "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111"
 };
 
+bool isBaseSupported(const unsigned int base) {
+    return base >= 2 && base <= 16;
+}
+
 std::string get_base_characters(const unsigned int base) {
     return HEX_BASE_CHARACTERS.substr(0, base);
 }

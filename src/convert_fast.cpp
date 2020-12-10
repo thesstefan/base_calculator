@@ -5,6 +5,9 @@
 #include "tools.hpp"
 
 Number convert_to_base2(const Number& number) {
+    if (number.base == 2)
+        return number;
+
     if (!is_power_of_two(number.base))
         throw std::runtime_error("Use convert_to_base2 only with power of 2 base");
 
@@ -22,6 +25,12 @@ Number convert_to_base2(const Number& number) {
 }
 
 Number convert_from_base2(unsigned int dstBase, const Number& number) {
+    if (dstBase == 2)
+        return number;
+
+    if (!isBaseSupported(dstBase))
+        throw std::runtime_error("Base not supported");
+
     if (!is_power_of_two(dstBase))
         throw std::runtime_error("Use convert_to_base2 only with power of 2 base");;
 
@@ -50,6 +59,9 @@ Number convert_from_base2(unsigned int dstBase, const Number& number) {
 }
 
 Number convert_fast(unsigned int dstBase, const Number& number) {
+    if (!isBaseSupported(dstBase))
+        throw std::runtime_error("Base not supported");
+
     if (!is_power_of_two(dstBase) || !is_power_of_two(number.base))
         throw std::runtime_error("Use convert_to_base2 only with bases that are \
                                   powers of two");

@@ -2,7 +2,7 @@
 
 #include "../src/convert.hpp"
 
-TEST_CASE("Conversion using successive division", "[convert_successive_division]") {
+TEST_CASE("Conversion using succesive division", "[convert_successive_division]") {
     SECTION( "Conversion from base 8" ) {
         Number octal_number = Number(8, "71236230");
 
