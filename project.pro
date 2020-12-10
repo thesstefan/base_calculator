@@ -12,7 +12,8 @@ SOURCES += src/tools.cpp \
            src/ui/add_dialog.cpp \
            src/ui/subtract_dialog.cpp \
            src/ui/multiply_dialog.cpp \
-           src/ui/divide_dialog.cpp
+           src/ui/divide_dialog.cpp \
+           src/ui/convert_dialog.cpp
 
 HEADERS += src/tools.hpp \
            src/number.hpp \
@@ -21,4 +22,5 @@ HEADERS += src/tools.hpp \
            src/ui/add_dialog.hpp \
            src/ui/subtract_dialog.hpp \
            src/ui/multiply_dialog.hpp \
-           src/ui/divide_dialog.hpp
+           src/ui/divide_dialog.hpp \
+           src/ui/convert_dialog.hpp

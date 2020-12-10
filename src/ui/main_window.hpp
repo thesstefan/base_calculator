@@ -13,4 +13,5 @@ class MainWindow : public QMainWindow {
         void subtractClicked();
         void multiplyClicked();
         void divideClicked();
+        void convertClicked();
 };

@@ -7,6 +7,7 @@
 #include "subtract_dialog.hpp"
 #include "multiply_dialog.hpp"
 #include "divide_dialog.hpp"
+#include "convert_dialog.hpp"
 
 MainWindow::MainWindow() {
     QWidget *centralWidget = new QWidget(this);
@@ -29,10 +30,18 @@ MainWindow::MainWindow() {
     QObject::connect(divideButton, &QPushButton::clicked,
                      this, &MainWindow::divideClicked);
 
+    QPushButton *convertButton = new QPushButton("Convert");
+    QObject::connect(convertButton, &QPushButton::clicked,
+                     this, &MainWindow::convertClicked);
+
+    QLabel *authorLabel = new QLabel("Author: Stefan Stefanache (916/2)");
+
     layout->addWidget(addButton);
     layout->addWidget(subtractButton);
     layout->addWidget(multiplyButton);
     layout->addWidget(divideButton);
+    layout->addWidget(convertButton);
+    layout->addWidget(authorLabel);
 
     centralWidget->setLayout(layout);
 
@@ -59,6 +68,12 @@ void MainWindow::multiplyClicked() {
 
 void MainWindow::divideClicked() {
     DivideDialog *dialog = new DivideDialog(this);
+
+    dialog->show();
+}
+
+void MainWindow::convertClicked() {
+    ConvertDialog *dialog = new ConvertDialog(this);
 
     dialog->show();
 }
