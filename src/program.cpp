@@ -1,9 +1,12 @@
-#include <iostream>
+#include <QtWidgets>
 
-#include "number.hpp"
-#include "convert.hpp"
+#include "ui/main_window.hpp"
 
-int main() {
-    std::cout << convert_succesive<16, 10>(
-        Number<16>("ABCD")).get_value() << std::endl;
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+
+    MainWindow main_window;
+    main_window.show();;
+
+    return app.exec();
 }
