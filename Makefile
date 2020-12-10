@@ -2,7 +2,7 @@ CPP = g++
 CPPFLAGS = -g
 
 INCLUDE := src
-SOURCE := $(wildcard src/*.cpp)
+SOURCE := $(filter-out src/program.cpp, $(wildcard src/*.cpp))
 TEST_SOURCE := $(wildcard test/*.cpp)
 
 OBJ := $(addprefix build/obj/, $(notdir $(SOURCE:.cpp=.o)))
