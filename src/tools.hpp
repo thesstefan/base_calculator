@@ -20,6 +20,13 @@
  */
 std::string get_base_characters(const unsigned int base);
 
+/**
+ * @brief Checks if the given base is supported.
+ *
+ * Currently only bases in the interval 2-16 are supported.
+ */
+bool isBaseSupported(const unsigned int base);
+
 /** @brief Checks if a given number is a power of two. **/
 bool is_power_of_two(const unsigned int number);
 
@@ -44,10 +51,7 @@ char valueToDigit(const unsigned int value);
  */
 unsigned int get_the_power_of_two(const unsigned int number);
 
-/** 
- * @brief The maximum binary digit "pack" size used in 
- *         fast conversion. 
- */
+/** @brief The maximum binary digit "pack" size used in fast conversion. */
 constexpr unsigned int BINARY_DIGIT_MAX_LENGTH = 4;
 
 /** @brief The characters used in hexadecimal representations. */

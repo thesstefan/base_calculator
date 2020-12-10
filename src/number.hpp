@@ -62,11 +62,14 @@ class Number {
         std::string get_value() const;
 
         /** 
-         * Validates a value string in the given template Base
+         * Checks if a value string is valid in the given base 
          *
          * A valid value string is defined as one that has each
          * "digit" contained in the set of characters used by the
          * base.
+         *
+         * @param base the base to be checked in
+         * @param value_string the value string to be checked
          *
          * @return true on success, false on fail
          */
