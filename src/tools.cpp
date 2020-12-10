@@ -1,3 +1,8 @@
+/**
+ * @file tools.hpp
+ * @author Stefan Stefanache (916/2) 
+ * @date 11.12.2020
+ */
 #include "tools.hpp"
 
 const std::string HEX_BASE_CHARACTERS("0123456789ABCDEF");
