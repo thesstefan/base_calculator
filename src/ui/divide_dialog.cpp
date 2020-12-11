@@ -10,6 +10,7 @@
 
 DivideDialog::DivideDialog(QWidget *parent) : 
     QDialog(parent) {
+    this->setWindowTitle("Divide Operation");
     this->baseSpinBox = new QSpinBox(this);
     this->baseSpinBox->setRange(2, 16);
 
@@ -24,8 +25,8 @@ DivideDialog::DivideDialog(QWidget *parent) :
     QFormLayout *formLayout = new QFormLayout();
 
     formLayout->addRow(tr("&Base: "), this->baseSpinBox);
-    formLayout->addRow(tr("&First Term: "), this->dividendLineEdit);
-    formLayout->addRow(tr("&Second Term: "), this->divisorLineEdit);
+    formLayout->addRow(tr("&Dividend: "), this->dividendLineEdit);
+    formLayout->addRow(tr("&Divisor: "), this->divisorLineEdit);
     formLayout->addRow(tr("&Result: "), this->resultLabel);
 
     QDialogButtonBox *buttonBox = 

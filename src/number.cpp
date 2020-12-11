@@ -121,17 +121,17 @@ Number Number::operator-(const Number& other) const {
     std::string result_value = "";
     unsigned int remainder = 0;
     for (int char_index = value.size() - 1; char_index >= 0; char_index--) {
-        int digit_sum_value = digitToValue(value[char_index]) -
+        int digit_diff_value = digitToValue(value[char_index]) -
                               digitToValue(other_value[char_index]) -
                               remainder;
 
-        if (digit_sum_value >= 0)
-            result_value.insert(result_value.begin(), valueToDigit(digit_sum_value));
+        if (digit_diff_value >= 0)
+            result_value.insert(result_value.begin(), valueToDigit(digit_diff_value));
         else
             result_value.insert(result_value.begin(),
-                                valueToDigit((base_characters.size() + digit_sum_value)));
+                                valueToDigit((base_characters.size() + digit_diff_value)));
 
-        remainder = digit_sum_value < 0 ? 1 : 0;
+        remainder = digit_diff_value < 0 ? 1 : 0;
     }
 
     if (remainder) 

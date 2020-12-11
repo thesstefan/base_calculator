@@ -10,6 +10,7 @@
 
 AddDialog::AddDialog(QWidget *parent) : 
     QDialog(parent) {
+    this->setWindowTitle("Add Operation");
     this->baseSpinBox = new QSpinBox(this);
     this->baseSpinBox->setRange(2, 16);
 

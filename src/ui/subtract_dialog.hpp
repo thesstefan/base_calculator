@@ -17,7 +17,7 @@ class SubtractDialog : public QDialog {
 
     private:
         QSpinBox *baseSpinBox;
-        QLineEdit *subterhandLineEdit;
+        QLineEdit *subtrahendLineEdit;
         QLineEdit *minuendLineEdit;
         QLabel *resultLabel;
 };

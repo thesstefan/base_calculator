@@ -10,6 +10,7 @@
 #include "convert_dialog.hpp"
 
 MainWindow::MainWindow() {
+    this->setWindowTitle("Optional Homework");
     QWidget *centralWidget = new QWidget(this);
 
     QVBoxLayout *layout = new QVBoxLayout();
